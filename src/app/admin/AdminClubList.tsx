@@ -5,6 +5,7 @@ import { produce } from "immer"
 import { type Club } from "~/data/School"
 import cn from "~/utils/cn"
 import updateClubAction from "./updateClubAction"
+import isURLValid from "~/utils/isURLValid"
 
 interface Props {
 	clubs: Club[]
@@ -58,7 +59,10 @@ export default function AdminClubList({ clubs: clubsProps }: Props) {
 					<li
 						key={club.name}
 						onClick={() => {
-							if (club.link !== undefined)
+							if (
+								club.link !== undefined &&
+								isURLValid(club.link)
+							)
 								window.location.href = club.link
 						}}
 						className="cursor-pointer rounded-md border border-stone-700 bg-black px-6 py-3 transition hover:border-stone-500 hover:bg-stone-950 focus-visible:border-stone-500 focus-visible:bg-stone-950 active:border-stone-500 active:bg-stone-950"

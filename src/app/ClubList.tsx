@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 import { type Club } from "~/data/School"
 import Await from "~/utils/Await"
+import isURLValid from "~/utils/isURLValid"
 
 interface Props {
 	clubsPromise: Promise<Club[]>
@@ -45,7 +46,10 @@ export default function ClubList({ clubsPromise }: Props) {
 							<ul className="flex flex-col justify-start gap-3">
 								{clubs.map((club) => {
 									const Component =
-										club.link !== undefined ? Link : "li"
+										club.link !== undefined &&
+										isURLValid(club.link)
+											? Link
+											: "li"
 
 									return (
 										<Component
