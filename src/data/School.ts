@@ -78,16 +78,14 @@ const School = ({
 
 		if (clubPoint === undefined) return
 
-		const clubId = clubPoint.id
-
 		const clubPayload = clubPayloadSchema.parse(clubPoint.payload)
 
 		await collection.updatePayload({
-			id: clubId,
 			payload: {
 				...clubPayload,
 				verified: true,
 			} satisfies ClubPayload,
+			filter: { schoolName, schoolDistrictName, name },
 		})
 	},
 	unverifyClub: async ({ name }: { name: string }) => {
@@ -105,16 +103,14 @@ const School = ({
 
 		if (clubPoint === undefined) return
 
-		const clubId = clubPoint.id
-
 		const clubPayload = clubPayloadSchema.parse(clubPoint.payload)
 
 		await collection.updatePayload({
-			id: clubId,
 			payload: {
 				...clubPayload,
-				verified: false,
+				verified: true,
 			} satisfies ClubPayload,
+			filter: { schoolName, schoolDistrictName, name },
 		})
 	},
 	deleteClub: async ({ name }: { name: string }) => {
