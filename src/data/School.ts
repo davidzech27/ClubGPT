@@ -71,7 +71,7 @@ const School = ({
 				schoolDistrictName,
 				name,
 			},
-			limit: 5,
+			limit: 1,
 		})
 		console.log("Verify", points)
 		const clubPoint = points[0]
@@ -96,7 +96,7 @@ const School = ({
 				schoolDistrictName,
 				name,
 			},
-			limit: 5,
+			limit: 1,
 		})
 		console.log("Unverify", points)
 		const clubPoint = points[0]

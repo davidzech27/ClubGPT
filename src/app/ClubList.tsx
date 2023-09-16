@@ -15,7 +15,7 @@ export default function ClubList({ clubsPromise }: Props) {
 	const [showWelcomeMessage, setShowWelcomeMessage] = useState(true)
 
 	useEffect(() => {
-		setTimeout(() => setShowWelcomeMessage(false), 2000)
+		setTimeout(() => setShowWelcomeMessage(false), 1500)
 	}, [])
 
 	return (

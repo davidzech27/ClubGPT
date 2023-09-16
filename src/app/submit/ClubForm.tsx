@@ -11,13 +11,6 @@ export default function ClubForm() {
 	const [descriptionInput, setDescriptionInput] = useState("")
 	const [linkInput, setLinkInput] = useState("")
 
-	const disabled = [
-		nameInput,
-		presidentNameInput,
-		descriptionInput,
-		linkInput,
-	].includes("")
-
 	const [submitting, setSubmitting] = useState(false)
 
 	const onSubmit = async () => {
@@ -32,6 +25,10 @@ export default function ClubForm() {
 
 		router.push("/submitted")
 	}
+
+	const disabled =
+		[nameInput, presidentNameInput, descriptionInput].includes("") ||
+		submitting
 
 	const router = useRouter()
 
@@ -115,10 +112,11 @@ export default function ClubForm() {
 				disabled={disabled}
 				className={cn(
 					"h-14 select-none rounded-md bg-white text-xl font-semibold outline-none transition",
-					disabled
+					submitting
+						? "animate-pulse"
+						: disabled
 						? "opacity-50"
 						: "hover:bg-stone-300 focus-visible:bg-stone-300 active:bg-stone-300",
-					submitting && "animate-pulse",
 				)}
 			>
 				Submit
